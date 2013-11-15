@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rake'
-# Add your dependencies here:
+
+group 'test' do
+  gem 'rspec'
+end
