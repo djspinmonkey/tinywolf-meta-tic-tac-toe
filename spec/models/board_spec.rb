@@ -20,33 +20,43 @@ describe Board do
 
     context 'passed invalid coordinates' do
       it 'raises an exception' do
-        expect { @board[1,8] = 'X' }.to raise_error /invalid coordinates/i
+        lambda { @board[1,8] = 'X' }.
+          should.raise(RuntimeError).
+          message.should.match(/Invalid coordinates/i) 
       end
     end
   end
 
   describe '#[]=' do
     it 'sets the owner of that position' do
-      expect { @board[1,1] = 'X' }.to change { @board[1,1] }.from(nil).to('X')
+      @board[1,1].should.equal(nil)
+      @board[1,1] = 'X'
+      @board[1,1].should.equal('X')
     end
 
     context 'for a positioned already owned' do
       before { @board[1,1] = 'X' }
 
       it 'raises an exception' do
-        expect { @board[1,1] = 'X' }.to raise_error /already owned/
+        lambda { @board[1,1] = 'X' }.
+          should.raise(RuntimeError).
+          message.should.match(/already owned/i)  
       end
     end
 
     context 'passed an invalid value' do
       it 'raises an exception' do
-        expect { @board[1,1] = 'bogus' }.to raise_error /invalid player/i
+        lambda { @board[1,1] = 'bogus' }.
+          should.raise(RuntimeError).
+          message.should.match(/invalid player/i) 
       end
     end
 
     context 'passed invalid coordinates' do
       it 'raises an exception' do
-        expect { @board[1,8] = 'X' }.to raise_error /invalid coordinates/i
+        lambda { @board[1,8] = 'X' }.
+          should.raise(RuntimeError).
+          message.should.match(/invalid coordinates/i)
       end
     end
   end
@@ -75,7 +85,7 @@ describe Board do
       end
 
       it 'is false' do
-        @board.three_in_a_row?.should.be_false
+        @board.three_in_a_row?.should.be.falsey
       end
     end
   end
