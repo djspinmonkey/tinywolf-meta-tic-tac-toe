@@ -70,7 +70,7 @@ describe Board do
     context 'when there are not' do
       before do
         @board[0,1] = 'X'
-        @board[1,1] = 'Y'
+        @board[1,1] = 'O'
         @board[2,1] = 'X'
       end
 

@@ -36,10 +36,15 @@ class Board
     return nil
   end
 
+  def full?
+    positions = [0,1,2].map {|x| [0,1,2].map {|y| self[x,y] } }.flatten
+    positions.all? {|pos| !pos.nil? }
+  end
+
   private
 
   def valid_player?(player)
-    (player == 'X') || (player == 'Y')
+    (player == 'X') || (player == 'O')
   end
 
   def valid_coords?(x, y)
